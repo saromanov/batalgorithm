@@ -1,0 +1,32 @@
+{
+  "name": "batalgorithm",
+  "version": "0.0.1",
+  "description": "Implementation of the bat algorithm",
+  "main": "index.js",
+  "scripts": {
+    "compile": "babel -d lib/ src/",
+    "prepublish": "npm run compile",
+    "test": "mocha test"
+  },
+"repository": {
+    "type": "git",
+    "url": "git+https://github.com/saromanov/batalgorithm.git"
+  },
+  "keywords": [
+    "optimization"
+  ],
+  "author": "Sergey Romanov <xxsmotur@gmail.com> (https://github.com/saromanov)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/saromanov/batalgorithm/issues"
+  },
+  "homepage": "https://github.com/saromanov/batalgorithm#readme",
+  "dependencies": {
+    "mathjs": "^1.7.0",
+    "core-js": "*"
+  },
+  "devDependencies": {
+    "babel": "*",
+    "mocha": "*"
+  }
+}
