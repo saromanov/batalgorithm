@@ -1,4 +1,4 @@
-import mathjs, {multiply, add, divide, subtract, dot, sum, sqrt, zeros} from 'mathjs';
+import mathjs, {multiply, add, divide, subtract, dot, sum, sqrt, zeros, exp} from 'mathjs';
 
 //Based on the paper "A New Metaheuristic Bat-Inspired Algorithm"
 //http://arxiv.org/abs/1004.4170
@@ -34,6 +34,16 @@ class BatAlgorithm {
 
             }
             vprev = b;
+
+            //Update rates
+            for(let i = 0;i < rates.length;++i) {
+                rates[i] = rates[i] * (1 - exp(-0.9 * iter));
+            }
+
+            //Update loudness
+            for(let i = 0;i < A.length;++i) {
+                A[i] = 0.9 * A[i];
+            }
         }
     }
 }
