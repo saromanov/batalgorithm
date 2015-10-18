@@ -17,6 +17,7 @@ class BatAlgorithm {
         let iter = 0;
         let len = X.length;
         let vprev = 0;
+        let result = [];
         while(iter < iters) {
             let rand = Math.Random();
             for(let i = 0;i < len;++i) {
@@ -29,7 +30,7 @@ class BatAlgorithm {
                 }
 
                 if(rand < A[i] && f(X[i]) < f(Xbest)) {
-
+                    result.push(X[i]);
                 }
 
             }
