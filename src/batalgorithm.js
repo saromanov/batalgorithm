@@ -22,7 +22,7 @@ class BatAlgorithm {
         let x = X;
         let xbest = x;
         let v = zeros(X.length).forEach(t => {
-            return Math.random();
+            return Math.Random();
         });
         while(iter < iters) {
             let rand = Math.Random();
@@ -30,29 +30,29 @@ class BatAlgorithm {
                 //Generation of local solution
                 let f_i = fmin + (fmax - fmin)*beta;
                 v[i] = x[i] + (x[i] - xbest) * f(x[i]);
-                x[i] = x[i-1] + v;
+                x[i] = x[i-1] + v[i];
                 if(rand > rates[i]) {
-                    xbest = x;
+                    xbest = x[i];
                     //Generate a local solution around the selected best solution
                     xbest = xbest + eps * avg(A);
                 }
 
                 if(rand < A[i] && f(X[i]) < f(Xbest)) {
                     result.push(X[i]);
+                    //Update rates
+                    for(let i = 0;i < rates.length;++i) {
+                       rates[i] = rates[i] * (1 - exp(-0.9 * iter));
+                    }
+
+                    //Update loudness
+                    for(let i = 0;i < A.length;++i) {
+                       A[i] = 0.9 * A[i];
+                    }
+
                 }
 
             }
             vprev = b;
-
-            //Update rates
-            for(let i = 0;i < rates.length;++i) {
-                rates[i] = rates[i] * (1 - exp(-0.9 * iter));
-            }
-
-            //Update loudness
-            for(let i = 0;i < A.length;++i) {
-                A[i] = 0.9 * A[i];
-            }
         }
     }
 }
