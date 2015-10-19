@@ -20,14 +20,16 @@ class BatAlgorithm {
         let result = [];
         //current population
         let x = X;
-        let v = 0;
         let xbest = x;
+        let v = zeros(X.length).forEach(t => {
+            return Math.random();
+        });
         while(iter < iters) {
             let rand = Math.Random();
             for(let i = 0;i < len;++i) {
                 //Generation of local solution
                 let f_i = fmin + (fmax - fmin)*beta;
-                let v = vprev + (x[i] - xbest) * f(x[i]);
+                v[i] = x[i] + (x[i] - xbest) * f(x[i]);
                 x[i] = x[i-1] + v;
                 if(rand > rates[i]) {
                     xbest = x;
