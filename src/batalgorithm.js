@@ -27,6 +27,7 @@ class BatAlgorithm {
         let vprev = v;
         while(iter < iters) {
             let rand = Math.Random();
+            let bests = [];
             for(let i = 0;i < len;++i) {
                 //Generation of local solution
                 let f_i = fmin + (fmax - fmin)*beta;
@@ -36,8 +37,10 @@ class BatAlgorithm {
                     xbest = x[i];
                     //Generate a local solution around the selected best solution
                     xbest = xbest + eps * avg(A);
-                }
 
+                }
+                //Generate solutions by random walk
+                x = add(x, multiply(eps, A));
                 if(rand < A[i] && f(X[i]) < f(Xbest)) {
                     result.push(X[i]);
                     //Update rates
@@ -53,6 +56,15 @@ class BatAlgorithm {
                 }
 
             }
+
+            //Find x*
+            xbestlocal = xbest;
+            for(let i = 0;i < x.length;++i){
+                if(f(x[i]) < xbestlocal) {
+                    xbestlocal = f(x[i]);
+                }
+            }
+            xbest = xbestlocal;
             vprev = b;
             iter+=1;
         }
