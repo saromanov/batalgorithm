@@ -53,6 +53,7 @@ class BatAlgorithm {
 
             }
             vprev = b;
+            iter+=1;
         }
     }
 }
