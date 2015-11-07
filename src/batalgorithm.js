@@ -16,21 +16,22 @@ class BatAlgorithm {
     fit(f, X, iters, rates, A, fmin=0, fmax=100) {
         let iter = 0;
         let len = X.length;
-        let vprev = 0;
         let result = [];
         //current population
         let x = X;
+        let xprev = x;
         let xbest = x;
         let v = zeros(X.length).forEach(t => {
             return Math.Random();
         });
+        let vprev = v;
         while(iter < iters) {
             let rand = Math.Random();
             for(let i = 0;i < len;++i) {
                 //Generation of local solution
                 let f_i = fmin + (fmax - fmin)*beta;
-                v[i] = x[i] + (x[i] - xbest) * f(x[i]);
-                x[i] = x[i-1] + v[i];
+                v[i] = vprev[i] + (x[i] - xbest) * f(x[i]);
+                x[i] = xprev[i] + v[i];
                 if(rand > rates[i]) {
                     xbest = x[i];
                     //Generate a local solution around the selected best solution
