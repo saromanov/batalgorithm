@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/saromanov/batalgorithm#readme",
   "dependencies": {
-    "mathjs": "^1.7.0",
+    "mathjs": "^7.5.1",
     "core-js": "*"
   },
   "devDependencies": {
